@@ -4,18 +4,25 @@
   <meta charset="UTF-8">
   <title>Portfólio - Pedro Claudino Nunes</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
   
   <header class="header">
+    <button class="menu-btn" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
     <h1>Portfólio Acadêmico</h1>
   </header>
 
-  <aside class="sidebar">
+  <aside class="sidebar" id="sidebar">
     <nav>
-      <a href="#sobre">Sobre</a>
+      <a href="#sobre"></a>
+            <a href="#sobre"></a>
+
       <a href="#projetos">Projetos</a>
-      
       <a href="#habilidades">Habilidades</a>
       <a href="#contato">Contato</a>
     </nav>
@@ -28,7 +35,9 @@
       <h2>Pedro Claudino Nunes</h2>
       <p>Estudante de Desenvolvimento de Software Multiplataforma</p>
       <a href="#projetos" class="btn">Ver Meus Projetos</a>
-<section id="projetos" class="secao">
+    </section>
+
+   <section id="projetos" class="secao">
   <h2>Projetos Acadêmicos</h2>
 
   <div class="cards">
@@ -79,21 +88,79 @@
   </div>
 </section>
 
-
-
-
-    <section id="habilidades" class="secao">
+    <section id="habilidades" class="secao habilidades">
       <h2>Habilidades & Tecnologias</h2>
-      <div class="tags">
-        <span>HTML5</span>
-        <span>CSS3</span>
-        <span>Node.js</span>
-        <span>JavaScript</span>
-        <span>SQL / SQL Server</span>
-        <span>TypeScript</span>
+      <div class="skills-container">
+
+        <div class="skill-card">
+          <div class="skill-header">
+            <i class="fab fa-html5"></i>
+            <span>HTML5</span>
+            <span class="skill-level" title="Avançado">90%</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-fill html" style="--width:90%;"></div>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-header">
+            <i class="fab fa-css3-alt"></i>
+            <span>CSS3</span>
+            <span class="skill-level" title="Avançado">85%</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-fill css" style="--width:85%;"></div>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-header">
+            <i class="fab fa-js"></i>
+            <span>JavaScript</span>
+            <span class="skill-level" title="Intermediário">58%</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-fill js" style="--width:58%;"></div>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-header">
+            <i class="fab fa-node-js"></i>
+            <span>Node.js</span>
+            <span class="skill-level" title="Intermediário">70%</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-fill node" style="--width:70%;"></div>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-header">
+            <i class="fas fa-database"></i>
+            <span>SQL / SQL Server</span>
+            <span class="skill-level" title="Intermediário">75%</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-fill sql" style="--width:75%;"></div>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-header">
+            <i class="fas fa-code"></i>
+            <span>TypeScript</span>
+            <span class="skill-level" title="Básico">65%</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-fill ts" style="--width:65%;"></div>
+          </div>
+        </div>
+
       </div>
     </section>
-    
+
   </main>
 
   <footer id="contato">
@@ -104,6 +171,39 @@
       <a href="https://www.linkedin.com/in/pedro-claudino-0566472b9/" target="_blank">LinkedIn</a>
     </div>
   </footer>
+
+<script>
+  function toggleMenu() {
+    const sidebar = document.getElementById("sidebar");
+    const btn = document.querySelector(".menu-btn");
+
+    sidebar.classList.toggle("active");
+    btn.classList.toggle("active");
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const skillsSection = document.querySelector(".habilidades");
+    const fills = document.querySelectorAll(".skill-fill");
+
+    fills.forEach(fill => fill.style.width = "0");
+
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          fills.forEach(fill => {
+            const targetWidth = fill.style.getPropertyValue("--width");
+            fill.style.transition = "width 1.2s ease-in-out";
+            fill.style.width = targetWidth;
+          });
+          observer.unobserve(skillsSection);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    observer.observe(skillsSection);
+  });
+</script>
+
 
 </body>
 </html>
