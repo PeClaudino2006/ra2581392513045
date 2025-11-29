@@ -141,6 +141,7 @@ body {
 .secao h2 {
   color: #2c3e50;
   margin-bottom: 1rem;
+  text-align: center;
 }
 
 .cards {
@@ -185,6 +186,23 @@ body {
 .btn:hover {
   background: #1a252f;
 }
+
+#sobre h3 {
+  color: #2c3e50;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+#sobre p {
+  color: #555;
+  line-height: 1.6;
+}
+
+#sobre .btn {
+  margin-top: 1.5rem;
+}
+
 
 .tags {
   display: flex;
